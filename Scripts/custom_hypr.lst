@@ -21,6 +21,7 @@ hyprland-git
 dunst
 rofi-lbonn-wayland-git
 waybar
+wofi
 swww
 swaylock-effects-git
 wlogout
@@ -30,7 +31,6 @@ swappy
 cliphist
 polkit-kde-agent
 xdg-desktop-portal-hyprland
-xdg-desktop-portal-gtk
 imagemagick
 qt5-imageformats
 pavucontrol
@@ -39,16 +39,8 @@ nwg-look
 kvantum
 qt5ct
 firefox
-kitty
 neofetch
 dolphin
-visual-studio-code-bin
 vim
 ark
-zsh
-exa
-oh-my-zsh-git
-zsh-theme-powerlevel10k-git
-zsh-syntax-highlighting-git
-zsh-autosuggestions-git
 pokemon-colorscripts-git

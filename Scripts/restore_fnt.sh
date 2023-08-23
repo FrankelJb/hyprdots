@@ -10,6 +10,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
+# echo "skipping uncompressing. uncomment to unskip"
 cat restore_fnt.lst | while read lst
 do
 
