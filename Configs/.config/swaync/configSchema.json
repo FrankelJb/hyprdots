@@ -382,6 +382,9 @@
         "^volume(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
           "$ref": "#/widgets/volume"
         },
+        "^backlight(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
+          "$ref": "#/widgets/backlight"
+        },
         "^inhibitors(#[a-zA-Z0-9_-]{1,}){0,1}?$": {
           // References the widget structure from "widgets" below
           "$ref": "#/widgets/inhibitors"
