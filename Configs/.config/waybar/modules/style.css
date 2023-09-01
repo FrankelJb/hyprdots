@@ -24,7 +24,7 @@ tooltip {
 
 #workspaces button {
     box-shadow: none;
-	text-shadow: none;
+    text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
     margin-top: ${w_margin}px;
@@ -33,7 +33,7 @@ tooltip {
     padding-right: ${w_paddin}px;
     color: @wb-color;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button.active {
@@ -44,7 +44,7 @@ tooltip {
     padding-right: ${w_padact}px;
     margin-right: ${w_margin}px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button:hover {
@@ -53,12 +53,12 @@ tooltip {
     padding-left: ${w_paddin}px;
     padding-right: ${w_paddin}px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #taskbar button {
     box-shadow: none;
-	text-shadow: none;
+    text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
     margin-top: ${w_margin}px;
@@ -67,7 +67,7 @@ tooltip {
     padding-right: ${w_paddin}px;
     color: @wb-color;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #taskbar button.active {
@@ -78,7 +78,7 @@ tooltip {
     padding-right: ${w_padact}px;
     margin-right: ${w_margin}px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #taskbar button:hover {
@@ -87,7 +87,7 @@ tooltip {
     padding-left: ${w_paddin}px;
     padding-right: ${w_paddin}px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #cpu,
@@ -113,6 +113,7 @@ tooltip {
 #custom-sr_end,
 #custom-rl_end,
 #custom-rr_end,
+#custom-swaync,
 #tray {
     color: @main-color;
     background: @main-bg;
