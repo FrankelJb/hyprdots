@@ -1,17 +1,13 @@
 {
-  "$schema": "~/.config/swaync/configSchema.json",
+  "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "top",
-  "layer": "overlay",
-  "control-center-layer": "top",
-  "layer-shell": true,
-  "cssPriority": "application",
-  "control-center-margin-top": 0,
+  "cssPriority": "user",
+  "layer": "top",
+  "control-center-margin-top": 10,
   "control-center-margin-bottom": 0,
-  "control-center-margin-right": 0,
+  "control-center-margin-right": 10,
   "control-center-margin-left": 0,
-  "notification-2fa-action": true,
-  "notification-inline-replies": false,
   "notification-icon-size": 64,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
@@ -27,31 +23,19 @@
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
-  "script-fail-notify": false,
+  "script-fail-notify": true,
   "scripts": {},
-  "notification-visibility": {
-    "example-name": {
-      "state": "muted",
-      "urgency": "Low",
-      "app-name": "Spotify"
-    }
-  },
+  "notification-visibility": {},
   "widgets": [
-    "mpris",
-    "backlight",
+    "menubar#label",
+    "buttons-grid",
     "volume",
-    "inhibitors",
+    "mpris",
     "title",
     "dnd",
-    "notifications",
-    "buttons-grid"
+    "notifications"
   ],
   "widget-config": {
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
-    },
     "title": {
       "text": "Notifications",
       "clear-all-button": true,
@@ -61,38 +45,81 @@
       "text": "Do Not Disturb"
     },
     "label": {
-      "max-lines": 5,
-      "text": "Label Text"
+      "max-lines": 4,
+      "text": "Control Center"
     },
     "mpris": {
       "image-size": 96,
       "image-radius": 12
     },
-    "backlight": {
-      "label": "󰃟 ",
-      "device": "intel_backlight",
-      "min": 10
+    "backlight#KB": {
+      "label": " ",
+      "device": "corsair::kbd_backlight",
+      "subsystem": "leds"
     },
     "volume": {
-      "label": "󰕾 "
+      "label": ""
+    },
+    "menubar#label": {
+      "menu#power-buttons": {
+        "label": "",
+        "position": "right",
+        "actions": [
+          {
+            "label": " Reboot",
+            "command": "systemctl reboot"
+          },
+          {
+            "label": " Lock",
+            "command": "swaylock -f "
+          },
+          {
+            "label": " Logout",
+            "command": "hyprctl exit"
+          },
+          {
+            "label": " Shut down",
+            "command": "systemctl poweroff"
+          }
+        ]
+      },
+      "menu#powermode-buttons": {
+        "label": "",
+        "position": "left",
+        "actions": [
+          {
+            "label": "Performance",
+            "command": "powerprofilesctl set performance"
+          },
+          {
+            "label": "Balanced",
+            "command": "powerprofilesctl set balanced"
+          },
+          {
+            "label": "Power-saver",
+            "command": "powerprofilesctl set power-saver"
+          }
+        ]
+      },
+      "buttons#topbar-buttons": {
+        "position": "left",
+        "actions": [
+          {
+            "label": "",
+            "command": "grim"
+          }
+        ]
+      }
     },
     "buttons-grid": {
       "actions": [
         {
-          "label": "",
-          "command": "gtklock"
+          "label": "",
+          "command": "~/.config/rofi/rofi-wifi-menu.sh"
         },
         {
-          "label": "󰍃",
-          "command": "hyprctl dispatch exit"
-        },
-        {
-          "label": "",
-          "command": "reboot"
-        },
-        {
-          "label": "⏻",
-          "command": "shutdown now"
+          "label": "",
+          "command": "~/.config/rofi/rofi-bluetooth"
         }
       ]
     }
