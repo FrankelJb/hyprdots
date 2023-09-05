@@ -10,24 +10,24 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-# echo "skipping uncompressing. uncomment to unskip"
-cat restore_fnt.lst | while read lst
-do
+echo "skipping uncompressing. uncomment to unskip"
+# cat restore_fnt.lst | while read lst
+# do
 
-    fnt=`echo $lst | awk -F '|' '{print $1}'`
-    tgt=`echo $lst | awk -F '|' '{print $2}'`
-    tgt=`eval "echo $tgt"`
+#     fnt=`echo $lst | awk -F '|' '{print $1}'`
+#     tgt=`echo $lst | awk -F '|' '{print $2}'`
+#     tgt=`eval "echo $tgt"`
 
-    if [ ! -d "${tgt}" ]
-    then
-        mkdir -p ${tgt}
-        echo "${tgt} directory created..."
-    fi
+#     if [ ! -d "${tgt}" ]
+#     then
+#         mkdir -p ${tgt}
+#         echo "${tgt} directory created..."
+#     fi
 
-    sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
-    echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
+#     sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
+#     echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
 
-done
+# done
 
 echo "rebuilding font cache..."
 fc-cache -f
