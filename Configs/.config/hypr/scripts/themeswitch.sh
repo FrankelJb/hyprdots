@@ -127,4 +127,16 @@ hyprctl reload
 
 # wallbash
 ${ScrDir}/swwwallbash.sh "$getWall"
+# refresh thumbnails
+$BaseDir/themeselect.sh T &
+
+
+# send notification
+# ncolor="-h string:bgcolor:#343d46 -h string:fgcolor:#c0c5ce -h string:frcolor:#c0c5ce"
+# dunstify $ncolor "theme" -a "    ${ThemeSet}" -i "~/.config/dunst/icons/paint.svg" -r 91190 -t 2200
+
+notify-send "Theme: ${ThemeSet}"
+
+# waybar
+$ConfDir/waybar/wbarconfgen.sh
 
