@@ -66,5 +66,5 @@ if nvidia_detect ; then
 fi
 
 ./create_cache.sh
-./restore_zsh.sh
+# ./restore_zsh.sh
 ./restore_lnk.sh
