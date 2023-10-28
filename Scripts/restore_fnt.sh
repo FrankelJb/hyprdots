@@ -20,7 +20,7 @@ echo "skipping uncompressing. uncomment to unskip"
 
 #     if [ ! -d "${tgt}" ]
 #     then
-#         mkdir -p ${tgt}
+#         mkdir -p ${tgt} || echo "creating the directory as root instead..." && sudo mkdir -p ${tgt}
 #         echo "${tgt} directory created..."
 #     fi
 
