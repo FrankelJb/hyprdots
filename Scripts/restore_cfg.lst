@@ -1,4 +1,5 @@
 ${HOME}|.bashrc
+${HOME}/.config|ags|aylurs-gtk-shell-git
 ${HOME}/.config/hypr|animations.conf hyprland.conf hyprpaper.conf keybindings.conf windowrules.conf scripts themes wofi|hyprland
 ${HOME}/.config|code-flags.conf|code-flags.conf
 ${HOME}/.config|dunst|dunst
