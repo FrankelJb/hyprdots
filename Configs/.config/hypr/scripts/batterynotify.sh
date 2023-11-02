@@ -14,13 +14,10 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
-      echo "  --full, -f        Set battery full threshold (default: $mnf% percent)"
-      echo "  --critical, -c    Set battery critical threshold (default: $mnc% percent)"
-      echo "  --low, -l         Set battery low threshold (default: $mnl% percent)"
-      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu% percent )"
-      echo "  --timer, -t       Set countdown timer (default: $mnt seconds)"
-      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: 2% percent)"
-      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: 5 minutes)"
+      echo "  --critical, -c    Set battery critical threshold (default: $mnc)"
+      echo "  --low, -l         Set battery low threshold (default: $mnl)"
+      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu)"
+      echo "  --timer, -t       Set countdown timer (default: $mnt)"
       echo "  --execute, -e     Set command/script to execute if battery on critical threshold (default: systemctl suspend)"
       echo "  --help, -h        Show this help message
       Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
@@ -89,13 +86,9 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Full") 
-                    if [[ $battery_status != "Discharging" ]]; then
-                    now=$(date +%s) 
-                    if [[ "$prev_status" == *"Charging"* ]] || ((now - lt >= $((notify*60)) )); then
-                     fn_notify "-t 5000 " "CRITICAL" "Battery Full" "Please unplug your Charger"
+                "Full") now=$(date +%s) 
+                    if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= 300)); then fn_notify "-r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
                     prev_status=$battery_status lt=$now
-                    fi
                     fi
                     ;;                                   
                     *)
