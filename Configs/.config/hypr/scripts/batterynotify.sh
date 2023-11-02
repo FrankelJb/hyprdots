@@ -1,19 +1,18 @@
 #!/bin/bash
 in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
-mnc=5 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=60 mxt=1000 #Defaults Ranges
+mnc=5 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 #Defaults Ranges
 while (( "$#" )); do  # Parse command-line arguments and defaults  
   case "$1" in
-"--full"|"-f") if in_range "$2" $mnf $mxf; then battery_full_threshold=$2 ; shift 2 ; else echo "$1 Error: Full Threshold must be $mnf - $mxf." >&2 ; exit 1 ; fi;;
-"--critical"|"-c") if in_range "$2" $mnc $mxc; then battery_critical_threshold=$2 ; shift 2 ; else echo "$1 ERROR: Critical Threshold must be $mnc - $mxc." >&2 ; exit 1 ; fi;;
-"--low"|"-l") if in_range "$2" $mnl $mnu; then battery_low_threshold=$2 ; shift 2 ; else echo "$1 ERROR: Low Threshold $mnl - $mnu." >&2 ; exit 1 ; fi;;
-"--unplug"|"-u") if in_range "$2" $mnu $mxu; then unplug_charger_threshold=$2 ; shift 2 ; else echo "$1 ERROR: Unplug Threshold must be $mnu $mxu." >&2 ; exit 1 ; fi;;
-"--timer"|"-t") if in_range "$2" $mnt $mxt; then timer=$2 ; shift 2 ; else echo "$1 ERROR: Timer must be $mnt - $mxt." >&2 ; exit 1 ; fi;;
-"--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Notify must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
-"--interval"|"-i") if in_range "$2" $mni $mxi; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Interval must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
-"--verbose"|"-v") verbose=true ; shift ;;
+"--full"|"-f") if in_range "$2" $mnf $mxf; then battery_full_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnf - $mxf." >&2 ; exit 1 ; fi;;
+"--critical"|"-c") if in_range "$2" $mnc $mxc; then battery_critical_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnc - $mxc." >&2 ; exit 1 ; fi;;
+"--low"|"-l") if in_range "$2" $mnl $mnu; then battery_low_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnl - $mnu." >&2 ; exit 1 ; fi;;
+"--unplug"|"-u") if in_range "$2" $mnu $mxu; then unplug_charger_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnu $mxu." >&2 ; exit 1 ; fi;;
+"--timer"|"-t") if in_range "$2" $mnt $mxt; then timer=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnt - $mxt." >&2 ; exit 1 ; fi;;
+"--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "Error: $1 must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
+      echo "  --full, -F    Set battery full threshold (default: $mnf)"
       echo "  --critical, -c    Set battery critical threshold (default: $mnc)"
       echo "  --low, -l         Set battery low threshold (default: $mnl)"
       echo "  --unplug, -u      Set unplug charger threshold (default: $mxu)"
@@ -60,9 +59,11 @@ fn_action () { #handles the $execute command
                   count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                   nohup $execute
 }
-
-fn_status () {
-if [ $battery_percentage -ge $battery_full_threshold ]; then battery_status="Full" ;fi
+fn_status () { # Handle the power supply status
+for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
+if [ $battery_percentage -eq $battery_full_threshold ]; then battery_status="Full"
+echo $battery_percentage 
+fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging")
                     if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
@@ -87,9 +88,13 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Full") now=$(date +%s) 
-                    if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= 600)); then fn_notify "-t 5000 -r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
+                "Full") 
+                    if [[ $battery_status != "Discharging" ]]; then
+                    now=$(date +%s) 
+                    if [[ "$prev_status" == *"Charging"* ]] || ((now - lt >= $((notify*60)) )); then
+                     fn_notify "-t 5000 -r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
                     prev_status=$battery_status lt=$now
+                    fi
                     fi
                     ;;                                   
                     *)
@@ -123,29 +128,31 @@ done
 main() { # Main function
     if is_laptop; then
 rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
-battery_full_threshold=${battery_full_threshold:-100} 
-battery_critical_threshold=${battery_critical_threshold:-10} 
-unplug_charger_threshold=${unplug_charger_threshold:-80}
-battery_low_threshold=${battery_low_threshold:-20}
-timer=${timer:-120}
-notify=${notify:-1140}
-interval=${interval:-2}
+battery_full_threshold=${battery_full_threshold:-$mxf} 
+battery_critical_threshold=${battery_critical_threshold:-$mnc} 
+unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
+battery_low_threshold=${battery_low_threshold:-$mnl}
+timer=${timer:-$mnt}
+notify=${notify:-$mnn}
 
 execute=${execute:-"systemctl suspend"}
 cat <<  EOF
 Script is running... 
 Check $0 --help for options. 
 
-      STATUS      THRESHOLD    INTERVAL
-      Full        $battery_full_threshold          $notify Minutes  
-      Critical    $battery_critical_threshold           $timer Seconds then "$execute"
-      Low         $battery_low_threshold           $interval Percent
-      Unplug      $unplug_charger_threshold          $interval Percent
+    |  Status    |  Threshold
+    |  Full      | $battery_full_threshold
+    |  Critical  | $battery_critical_threshold
+    |  Low       | $battery_low_threshold 
+    | Unplug     | $unplug_charger_threshold  
 
+!!! Notification interval for Battery Full / $battery_full_threshold% is $notify minutes. 
+!!! If Battery is $battery_critical_threshold%, Device will execute $execute after $timer seconds. 
+
+If you have Errors Please Post an issue at https://github.com/prasanthrangan/hyprdots
 
 EOF
-if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;fi
-    fn_status_change  # initiate the function
+    fn_status  # initiate the function
     last_notified_percentage=$battery_percentage
     prev_status=$battery_status
 
