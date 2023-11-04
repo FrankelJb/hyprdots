@@ -60,6 +60,7 @@ jq
 imagemagick
 qt5-imageformats
 ffmpegthumbs
+kde-cli-tools
 brightnessctl
 pavucontrol
 pamixer
@@ -74,5 +75,3 @@ visual-studio-code-bin
 vim
 ark
 pokemon-colorscripts-git
-kde-cli-tools
-partitionmanager
