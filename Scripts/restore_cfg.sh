@@ -56,7 +56,7 @@ cat restore_cfg.lst | while read lst; do
 	done
 
 done
-
+cp -r $BkpDir/.config/swww/.cache $HOME/.config/swww
 touch ${HOME}/.config/hypr/monitors.conf
 touch ${HOME}/.config/hypr/userprefs.conf
 
