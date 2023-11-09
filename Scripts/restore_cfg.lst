@@ -1,29 +1,29 @@
-${HOME}|.bashrc
-${HOME}/.config|kidex.ron
-${HOME}/.config|Kvantum|kvantum
-${HOME}/.config|MangoHud|mangohud
-${HOME}/.config/VSCodium/User|settings.json|visual-studio-code-bin
-${HOME}/.config|ags|aylurs-gtk-shell-gi${HOME}/.config/Code/User|settings.json|visual-studio-code-bint
-${HOME}/.config|anyrun|anyrun-git
-${HOME}/.config/hypr|animations.conf hyprland.conf hyprpaper.conf keybindings.conf monitors.conf windowrules.conf scripts themes wofi|hyprland
-${HOME}/.config|code-flags.conf|code-flags.conf
-${HOME}/.config|dunst|dunst
-${HOME}/.config|fish|fish
-${HOME}/.config|foot|foot
-${HOME}/.config|fuzzel|fuzzel
-${HOME}/.config|kitty|kitty
-${HOME}/.config|neofetch|neofetch
-${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look
-${HOME}/.config|qt5ct|qt5ct
-${HOME}/.config|rofi|rofi
-${HOME}/.config|swaylock|swaylock-effects
-${HOME}/.config|swaync|swaync
-${HOME}/.config|swww|swww
-${HOME}/.config|waybar|waybar
-${HOME}/.config|wlogout|wlogout
-${HOME}/.config|zellij|zellij
-${HOME}/.icons|default|nwg-look
-${HOME}|.gtkrc-2.0|nwg-look
-${HOME}/.config|dolphinrc kdeglobals|dolphin
-${HOME}/.local/share|dolphin|dolphin
-${HOME}/.local/share/kxmlgui5|dolphin|dolphin
+Y|${HOME}|.bashrc
+Y|${HOME}/.config|kidex.ron
+Y|${HOME}/.config|Kvantum|kvantum
+Y|${HOME}/.config|MangoHud|mangohud
+Y|${HOME}/.config/VSCodium/User|settings.json|visual-studio-code-bin
+Y|${HOME}/.config|ags|aylurs-gtk-shell-gi${HOME}/.config/Code/User|settings.json|visual-studio-code-bint
+Y|${HOME}/.config|anyrun|anyrun-git
+Y|${HOME}/.config/hypr|animations.conf hyprland.conf hyprpaper.conf keybindings.conf monitors.conf windowrules.conf scripts themes wofi|hyprland
+Y|${HOME}/.config|code-flags.conf|code-flags.conf
+Y|${HOME}/.config|dunst|dunst
+Y|${HOME}/.config|fish|fish
+Y|${HOME}/.config|foot|foot
+Y|${HOME}/.config|fuzzel|fuzzel
+Y|${HOME}/.config|kitty|kitty
+Y|${HOME}/.config|neofetch|neofetch
+Y|${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look
+Y|${HOME}/.config|qt5ct|qt5ct
+Y|${HOME}/.config|rofi|rofi
+Y|${HOME}/.config|swaylock|swaylock-effects
+Y|${HOME}/.config|swaync|swaync
+Y|${HOME}/.config|swww|swww
+Y|${HOME}/.config|waybar|waybar
+Y|${HOME}/.config|wlogout|wlogout
+Y|${HOME}/.config|zellij|zellij
+Y|${HOME}/.icons|default|nwg-look
+Y|${HOME}|.gtkrc-2.0|nwg-look
+Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
+Y|${HOME}/.local/share|dolphin|dolphin
+Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
