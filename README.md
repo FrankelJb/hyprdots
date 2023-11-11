@@ -9,6 +9,13 @@
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
 &ensp;[<kbd> <br> Youtube <br> </kbd>](#Youtube)&ensp;
 &ensp;[<kbd> <br> Wiki <br> </kbd>](https://github.com/prasanthrangan/hyprdots/wiki)&ensp;
+&ensp;[<kbd><br> Install <br></kbd>](#installation)&ensp;
+&ensp;[<kbd><br> Themes <br></kbd>](#theming)&ensp;
+&ensp;[<kbd><br> Styles <br></kbd>](#styles)&ensp;
+&ensp;[<kbd><br> Packages <br></kbd>](#packages)&ensp;
+&ensp;[<kbd><br> Keybindings <br></kbd>](#keybindings)&ensp;
+&ensp;[<kbd><br> Youtube <br></kbd>](#playlist)&ensp;
+&ensp;[<kbd><br> KnownIssues <br></kbd>](#known-issues)&ensp;
 <br><br><br><br></div>
 
 <https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4>
@@ -22,21 +29,22 @@
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Installation
 
-The installation script is made for Arch, but **may** work on some Arch based distros with **systemd**.
-For Debian, please refer **Senshi111**'s version [here](https://github.com/Senshi111/debian-hyprland-hyprdots).
-Checkout **Ksk**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full installation walkthrough.
+The installation script is made for Arch, but **may** work on some Arch based
+distros. For Debian, please refer **Senshi111**'s version
+[here](https://github.com/Senshi111/debian-hyprland-hyprdots).
 
-> [!IMPORTANT]
-> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
-> So please ensure that your Nvidia card supports [dkms](https://wiki.archlinux.org/title/NVIDIA) drivers and hyprland.
-
-> [!CAUTION]
-> The script modifies your grub config to enable Nvidia drm and theme
+> **Warning**
+>
+> Install script will auto-detect nvidia card and install nvidia-dkms drivers
+> for your kernel. Nvidia drm will be enabled in grub, so please
+> [ensure](https://wiki.archlinux.org/title/NVIDIA) your nvidia card supports
+> dkms drivers/hyprland.
 
 After minimal Arch install (with grub and systemd), clone and execute -
 
@@ -47,11 +55,14 @@ cd ~/Hyprdots/Scripts
 ./install.sh
 ```
 
-> [!TIP]
-> You can also create your own list (for ex. `custom_apps.lst`) with all your favorite apps and pass the file as a parameter to install it -
->```shell
->./install.sh custom_apps.lst
->```
+> **Note**
+>
+> You can also create your own list (for ex. `custom_apps.lst`) with all your
+> favorite apps and pass the file as a parameter to install it -
+>
+> ```shell
+> ./install.sh custom_apps.lst
+> ```
 
 Please reboot after the install script completes and takes you to sddm login
 screen (or black screen) for the first time. For more details, please refer
@@ -59,79 +70,84 @@ screen (or black screen) for the first time. For more details, please refer
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Themes
 
-To create your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
+To add your own custom theme, please refer
+[theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
 
-> [!TIP]
-> You can install/browse/create/maintain/share additional themes (ex. [Synth-Wave](https://github.com/prasanthrangan/hyprdots-mod)) using themepatcher.
-> For more details please refer [themepatcher wiki](https://github.com/prasanthrangan/hyprdots/wiki/Themepatcher).
+- Available themes
+  - [x] Catppuccin-Mocha
+  - [x] Catppuccin-Latte
+  - [x] Decay-Green
+  - [x] Rosé-Pine
+  - [x] Tokyo-Night
+  - [x] Material-Sakura
+  - [x] Graphite-Mono
+  - [x] Cyberpunk-Edge
+  - [ ] Nordic-Blue (maybe later)
 
-<br><div align="center"><table><tr><td><img width="60" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png"></td><td>
+- Contributors themes
+  - [x] Frosted-Glass by T-Crypt
+  - [x] Gruvbox-Retro by T-Crypt
 
-[![Catppuccin-Mocha](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](#-Catppuccin-Mocha)
-[![Catppuccin-Latte](https://placehold.co/130x30/dd7878/eff1f5?text=Catppuccin-Latte&font=Oswald)](#-Catppuccin-Latte)
-[![Decay-Green](https://placehold.co/130x30/90ceaa/151720?text=Decay-Green&font=Oswald)](#-Decay-Green)
-[![Rosé-Pine](https://placehold.co/130x30/c4a7e7/191724?text=Rosé-Pine&font=Oswald)](#-Rosé-Pine)
-[![Tokyo-Night](https://placehold.co/130x30/7aa2f7/24283b?text=Tokyo-Night&font=Oswald)](#-Tokyo-Night)<br>
-[![Material-Sakura](https://placehold.co/130x30/f2e9e1/b4637a?text=Material-Sakura&font=Oswald)](#-Material-Sakura)
-[![Graphite-Mono](https://placehold.co/130x30/a6a6a6/262626?text=Graphite-Mono&font=Oswald)](#-Graphite-Mono)
-[![Cyberpunk-Edge](https://placehold.co/130x30/fada16/000000?text=Cyberpunk-Edge&font=Oswald)](#-Cyberpunk-Edge)
-[![Frosted-Glass](https://placehold.co/130x30/7ed6ff/1e4c84?text=Frosted-Glass&font=Oswald)](#-Frosted-Glass-by-T-crypt)
-[![Gruvbox-Retro](https://placehold.co/130x30/475437/B5CC97?text=Gruvbox-Retro&font=Oswald)](#-Gruvbox-Retro-by-T-crypt)
-</td></tr></table></div><br><table><td><br>
+|                                                   Catppuccin-Mocha                                                    |
+| :-------------------------------------------------------------------------------------------------------------------: |
+| ![Catppuccin-Mocha#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png) |
+| ![Catppuccin-Mocha#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png) |
 
-> #### ***<div align = right>// Catppuccin-Mocha</div>***
+|                                                   Catppuccin-Latte                                                    |
+| :-------------------------------------------------------------------------------------------------------------------: |
+| ![Catppuccin-Latte#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png) |
+| ![Catppuccin-Latte#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png) |
 
-![Catppuccin-Mocha#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png)
-![Catppuccin-Mocha#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png)<br><br>
+|                                                   Decay-Green                                                    |
+| :--------------------------------------------------------------------------------------------------------------: |
+| ![Decay-Green#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png) |
+| ![Decay-Green#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png) |
 
-> #### ***<div align = right>// Catppuccin-Latte</div>***
+|                                                    Rosé-Pine                                                    |
+| :-------------------------------------------------------------------------------------------------------------: |
+| ![Rosé-Pine#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_1.png) |
+| ![Rosé-Pine#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_2.png) |
 
-![Catppuccin-Latte#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png)
-![Catppuccin-Latte#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png)<br><br>
+|                                                   Tokyo-Night                                                    |
+| :--------------------------------------------------------------------------------------------------------------: |
+| ![Tokyo-Night#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_1.png) |
+| ![Tokyo-Night#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_2.png) |
 
-> #### ***<div align = right>// Decay-Green</div>***
-![Decay-Green#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png)
-![Decay-Green#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png)<br><br>
+|                                                   Material-Sakura                                                    |
+| :------------------------------------------------------------------------------------------------------------------: |
+| ![Material-Sakura#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_1.png) |
+| ![Material-Sakura#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_2.png) |
 
-> #### ***<div align = right>// Rosé-Pine</div>***
-![Rosé-Pine#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_1.png)
-![Rosé-Pine#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_2.png)<br><br>
+|                                                   Graphite-Mono                                                    |
+| :----------------------------------------------------------------------------------------------------------------: |
+| ![Graphite-Mono#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_1.png) |
+| ![Graphite-Mono#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_2.png) |
 
-> #### ***<div align = right>// Tokyo-Night</div>***
-![Tokyo-Night#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_1.png)
-![Tokyo-Night#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_2.png)<br><br>
+|                                                   Cyberpunk-Edge                                                    |
+| :-----------------------------------------------------------------------------------------------------------------: |
+| ![Cyberpunk-Edge#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png) |
+| ![Cyberpunk-Edge#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png) |
 
-> #### ***<div align = right>// Material-Sakura</div>***
-![Material-Sakura#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_1.png)
-![Material-Sakura#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_2.png)<br><br>
+|                                                    Frosted-Glass                                                     |
+| :------------------------------------------------------------------------------------------------------------------: |
+| ![Frosted-Glass#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_1.png) |
+| ![Frosted-Glass#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_2.png) |
 
-> #### ***<div align = right>// Graphite-Mono</div>***
-![Graphite-Mono#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_1.png)
-![Graphite-Mono#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_2.png)<br><br>
-
-> #### ***<div align = right>// Cyberpunk-Edge</div>***
-![Cyberpunk-Edge#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png)
-![Cyberpunk-Edge#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png)<br><br>
-
-> #### ***<div align = right>// Frosted-Glass by T-crypt</div>***
-![Frosted-Glass#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_1.png)
-![Frosted-Glass#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_2.png)<br><br>
-
-> #### ***<div align = right>// Gruvbox-Retro by T-crypt</div>***
-![Gruvbox-Retro#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png)
-![Gruvbox-Retro#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png)
-
-</td></table>
-
+|                                                    Gruvbox-Retro                                                     |
+| :------------------------------------------------------------------------------------------------------------------: |
+| ![Gruvbox-Retro#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png) |
+| ![Gruvbox-Retro#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png) |
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Styles
@@ -173,7 +189,8 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Packages
@@ -274,7 +291,8 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Keybindings
@@ -326,7 +344,8 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 <div align = right> <br><br>
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
 </div>
 
 ## Youtube
@@ -337,3 +356,17 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 </td></tr></table>
 
+<div align = right> <br><br>
+
+[<kbd><br> Top <br></kbd>](#-design-by-t2)
+
+</div>
+
+## Known Issues
+
+- [ ] Few scaling issues with rofi configs, as they are created based on my
+      ultrawide (21:9) display.
+- [ ] Random lockscreen crash, refer <https://github.com/swaywm/sway/issues/7046>
+- [ ] Waybar launching rofi breaks mouse input (added `sleep 0.1` as
+      workaround), refer <https://github.com/Alexays/Waybar/issues/1850>
+- [ ] Flatpak QT apps does not follow system theme
