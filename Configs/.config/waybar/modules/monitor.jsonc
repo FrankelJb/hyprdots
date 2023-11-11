@@ -1,0 +1,5 @@
+    "custom/monitor": {
+        "format": "󰍹{}",
+        "exec": "echo ; hyprctl monitors | grep @",
+        "interval": 86400, // once every day
+    },

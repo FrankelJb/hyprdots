@@ -77,15 +77,16 @@ imagick_t2 () {
 }
 
 # create thumbnails for each theme > wallpapers
-export -f imagick_t2
-while read ctlLine
-do
-    theme=$(echo $ctlLine | cut -d '|' -f 2)
-    fullPath=$(echo "$ctlLine" | cut -d '|' -f 3 | sed "s+~+$HOME+")
-    wallPath=$(dirname "$fullPath")
-    mkdir -p ${CacheDir}/${theme}
-    mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
-    echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
-    parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
-done < $ctlFile
+echo "skipping creating thumbnails, uncomment to recreate"
+# export -f imagick_t2
+# while read ctlLine
+# do
+#     theme=$(echo $ctlLine | cut -d '|' -f 2)
+#     fullPath=$(echo "$ctlLine" | cut -d '|' -f 3 | sed "s+~+$HOME+")
+#     wallPath=$(dirname "$fullPath")
+#     mkdir -p ${CacheDir}/${theme}
+#     mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+#     echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
+#     parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
+# done < $ctlFile
 
