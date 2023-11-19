@@ -17,16 +17,16 @@ then
 fi
 
 # set variables
-ctlFile="$HOME/.config/swww/wall.ctl"
+ctlFile="$HOME/.config/hypr/theme.ctl"
 ctlLine=`grep '^1|' $ctlFile`
-export CacheDir="$HOME/.config/swww/.cache"
+export cacheDir="$HOME/.config/swww/.cache"
 
 # evaluate options
 while getopts "fc" option ; do
     case $option in
     f ) # force remove cache
-        rm -Rf ${CacheDir}
-        echo "Cache dir ${CacheDir} cleared...";;
+        rm -Rf ${cacheDir}
+        echo "Cache dir ${cacheDir} cleared...";;
     c ) # use custom wallpaper
         shift $((OPTIND -1))
         inWall="$1"
@@ -36,7 +36,7 @@ while getopts "fc" option ; do
         if [[ -f "${inWall}" ]] ; then
             if [ `echo "$ctlLine" | wc -l` -eq "1" ] ; then
                 curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-                sed -i "/^1|/c\1|${curTheme}|${inWall}" "$ctlFile"
+                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > /tmp/t2 && mv /tmp/t2 "${ThemeCtl}"
             else
                 echo "ERROR : $ctlFile Unable to fetch theme..."
                 exit 1
@@ -77,41 +77,41 @@ imagick_t2 () {
     wpFullName="$2"
     wpBaseName=$(basename "${wpFullName}")
 
-    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ]; then
-        convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
+    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}" ]; then
+        convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}"
     fi
 
-    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.rofi" ]; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}" "${CacheDir}/${theme}/${wpBaseName}.rofi"
+    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.rofi" ]; then
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}" "${cacheDir}/${theme}/${wpBaseName}.rofi"
     fi
 
-    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.blur" ]; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}" "${CacheDir}/${theme}/${wpBaseName}.blur"
+    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.blur" ]; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}" "${cacheDir}/${theme}/${wpBaseName}.blur"
     fi
 
-    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
+    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
         dcol=(`magick "${wpFullName}" -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
         for (( i = 1; i < 3; i++ )) ; do
             [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
         done
         for (( j = 0; j < 3; j++ )) ; do
             r_swatch=$(echo "#${dcol[j]}" | sed 's/#//g')
-            echo "dcol_pry${j}=\"${r_swatch}\"" >> "${CacheDir}/${theme}/${wpBaseName}.dcol"
+            echo "dcol_pry${j}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
             r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -negate -format "%c" histogram:info: | awk '{print $4}'`)
-            echo "dcol_txt${j}=\"${r_swatch}\"" >> "${CacheDir}/${theme}/${wpBaseName}.dcol"
+            echo "dcol_txt${j}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
             z=0
 
             if dark_light "#${dcol[j]}" ; then
                 for t in 30 50 70 90 ; do
                     z=$(( z + 1 ))
                     r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
-                    echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${CacheDir}/${theme}/${wpBaseName}.dcol"
+                    echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             else
                 for t in 15 35 55 75 ; do
                     z=$(( z + 1 ))
                     r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
-                    echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${CacheDir}/${theme}/${wpBaseName}.dcol"
+                    echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             fi
         done

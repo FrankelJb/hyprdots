@@ -5,7 +5,7 @@ Y|${HOME}/.config|MangoHud|mangohud
 Y|${HOME}/.config/VSCodium/User|settings.json|visual-studio-code-bin
 Y|${HOME}/.config|ags|aylurs-gtk-shell-gi${HOME}/.config/Code/User|settings.json|visual-studio-code-bint
 Y|${HOME}/.config|anyrun|anyrun-git
-Y|${HOME}/.config/hypr|animations.conf hyprland.conf hyprpaper.conf keybindings.conf monitors.conf windowrules.conf scripts themes wofi|hyprland
+Y|${HOME}/.config/hypr|animations.conf hyprland.conf hyprpaper.conf keybindings.conf theme.ctl windowrules.conf scripts themes wallbash|hyprland
 Y|${HOME}/.config|code-flags.conf|code-flags.conf
 Y|${HOME}/.config|dunst|dunst
 Y|${HOME}/.config|fish|fish
